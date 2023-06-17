@@ -10,7 +10,7 @@ pipeline { // 파이프라인을 stage별로 나눠서 명시함, 흐름을 파�
         stage('Build Codes by Gradle') { // Gradle을 이용한 빌드과정
             steps {
                 sh """
-                cd ./gradlew
+                gradlew clean build
                 """
             }
         }
