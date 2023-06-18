@@ -16,9 +16,8 @@ pipeline {
         stage('Prepare') {
           steps {
             echo 'Clonning Repository'
-            git url: 'git repository 주소',
-              branch: 'master',
-              credentialsId: '생성한 github access token credentail id'
+            git url: 'https://github.com/sangguk-choi/spring_demo.git',
+              branch: 'main',
             }
             post {
              success { 
