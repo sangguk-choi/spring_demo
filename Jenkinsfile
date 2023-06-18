@@ -1,84 +1,25 @@
-pipeline {
+def mainDir="Chapter02/2-jenkins-docker" // 메인 디렉토리
+def ecrLoginHelper="docker-credential-ecr-login" // ECR에 push할 때 필요한 로그인을 미리 전역변수로 적어둠
+def region="us-east-1" // 사용하는 리전
+def ecrUrl="436115905187.dkr.ecr.us-east-1.amazonaws.com/test" // ECR url
+def repository="test" // 프라이빗 fp파지토리
+def deployHost="172.31.81.217" // 배포서버 - AWS EC2 프리이빗 IP
+
+pipeline { // 파이프라인을 stage별로 나눠서 명시함, 흐름을 파악할 때 사용
     agent any
 
-    // triggers {
-    //     pollSCM('*/3 * * * *')
-    // }
-
-    environment {
-        imagename = "docker_image"
-        registryCredential = 'docker hub credential ID'
-        dockerImage = ''
-    }
-
     stages {
-        // git에서 repository clone
-        stage('Prepare') {
-          steps {
-            echo 'Clonning Repository'
-            git url: 'https://github.com/sangguk-choi/spring_demo.git',
-              branch: 'main',
+        stage('Pull Codes from Github'){
+            steps{
+                checkout scm
             }
-            post {
-             success { 
-               echo 'Successfully Cloned Repository'
-             }
-           	 failure {
-               error 'This pipeline stops here...'
-             }
-          }
         }
-
-    //     // gradle build
-    //     stage('Bulid Gradle') {
-    //       agent any
-    //       steps {
-    //         echo 'Bulid Gradle'
-    //         dir ('.'){
-    //             sh """
-    //             ./gradlew clean build --exclude-task test
-    //             """
-    //         }
-    //       }
-    //       post {
-    //         failure {
-    //           error 'This pipeline stops here...'
-    //         }
-    //       }
-    //     }
-        
-    //     // docker build
-    //     stage('Bulid Docker') {
-    //       agent any
-    //       steps {
-    //         echo 'Bulid Docker'
-    //         script {
-    //             dockerImage = docker.build imagename
-    //         }
-    //       }
-    //       post {
-    //         failure {
-    //           error 'This pipeline stops here...'
-    //         }
-    //       }
-    //     }
-
-    //     // docker push
-    //     stage('Push Docker') {
-    //       agent any
-    //       steps {
-    //         echo 'Push Docker'
-    //         script {
-    //             docker.withRegistry( '', registryCredential) {
-    //                 dockerImage.push("docker tag name")  // ex) "1.0"
-    //             }
-    //         }
-    //       }
-    //       post {
-    //         failure {
-    //           error 'This pipeline stops here...'
-    //         }
-    //       }
-    //     }
-    // }
+        stage('Build Codes by Gradle') { // Gradle을 이용한 빌드과정
+            steps {
+                sh """
+                ./gradlew clean build
+                """
+            }
+        }
+    }
 }
