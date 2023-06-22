@@ -27,21 +27,24 @@
             async function askChatGPT() {
               try {
                 const request = {
-                  model: "text-davinci-003",
-                  prompt: "Hello",
-                  maxTokens: 500,
-                  temperature: 1.0,
+<!--                  model: "text-davinci-003",-->
+                  prompt: "점심 메뉴 추천해줘",
+<!--                  maxTokens: 500,-->
+<!--                  temperature: 1.0,-->
                 };
                 const url = "http://localhost:8080/api/askChatGPT";
                 const response = await fetch(url, {
                   method: "POST",
                      headers: {
                             "Content-Type": "application/json",
-                            'Authorization': 'Bearer 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'
+<!--                            If you need Authorization-->
+<!--                            'Authorization': 'Bearer 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'-->
                      },
                      body: JSON.stringify(request),
                 });
+<!--                string output-->
                 const data = await response.text();
+<!--                json output-->
 <!--                const data = await response.json();-->
                 console.log(data);
                 return data;

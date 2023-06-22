@@ -6,5 +6,5 @@ import lombok.Setter;
 @Setter
 @Getter
 public class ChatReqEntity {
-    String Request;
+    private String prompt;
 }

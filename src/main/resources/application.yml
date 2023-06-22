@@ -3,7 +3,7 @@ pring:
     include: API-KEY
 
 openai:
-  api-key: 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
+  api-key: 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
 
 chatgpt:
-  api-key: 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
+  api-key: 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

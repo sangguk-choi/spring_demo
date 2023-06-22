@@ -6,6 +6,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class TestEntity {
-    String name;
-    String age;
+    private String name;
+    private String age;
 }
