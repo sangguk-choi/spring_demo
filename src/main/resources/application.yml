@@ -1,0 +1,9 @@
+pring:
+  profiles:
+    include: API-KEY
+
+openai:
+  api-key: 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
+
+chatgpt:
+  api-key: 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

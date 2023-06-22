@@ -24,6 +24,34 @@
         <header>
           <h1>Paradigm Shift</h1>
           <script>
+            async function askChatGPT() {
+              try {
+                const request = {
+                  model: "text-davinci-003",
+                  prompt: "Hello",
+                  maxTokens: 500,
+                  temperature: 1.0,
+                };
+                const url = "http://localhost:8080/api/askChatGPT";
+                const response = await fetch(url, {
+                  method: "POST",
+                     headers: {
+                            "Content-Type": "application/json",
+                            'Authorization': 'Bearer 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'
+                     },
+                     body: JSON.stringify(request),
+                });
+                const data = await response.text();
+<!--                const data = await response.json();-->
+                console.log(data);
+                return data;
+              } catch (error) {
+                console.error(error);
+              }
+            }
+          </script>
+          <button onclick="askChatGPT()">Click to Test0</button>
+          <script>
             async function test1() {
               try {
                 const name = "sangguk"; // 전달할 데이터
@@ -45,7 +73,7 @@
               }
             }
           </script>
-          <button onclick="test1()">Click to Test</button>
+          <button onclick="test1()">Click to Test1</button>
           <p>
             A free responsive site template designed by
             <a href="https://twitter.com/ajlkn">@ajlkn</a> /
