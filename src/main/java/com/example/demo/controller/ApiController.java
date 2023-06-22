@@ -1,25 +1,30 @@
 package com.example.demo.controller;
 
+import com.example.demo.TestEntity;
 import io.swagger.annotations.ApiOperation;
+import jdk.jfr.ContentType;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api")
 public class ApiController {
-    @GetMapping( value = "test1", produces = MediaType.TEXT_PLAIN_VALUE)
+    @GetMapping( value = "test1")
     @ApiOperation(value = "Test Sample1")
-    public Object sample1(@RequestParam String param) {
-        return ResponseEntity.ok(param);
+    public Object test1(@RequestParam("name") String name, @RequestParam("age") String age) {
+        System.out.println("test");
+        TestEntity testEntity = new TestEntity();
+
+        testEntity.setName(name);
+        testEntity.setAge(age);
+
+        return ResponseEntity.ok(testEntity);
     }
 
     @GetMapping( value = "test2", produces = MediaType.TEXT_PLAIN_VALUE)
     @ApiOperation(value = "Test Sample2")
-    public Object sample2(@RequestParam String param) {
+    public Object test2(@RequestParam String param) {
         return ResponseEntity.ok(param);
     }
 }
