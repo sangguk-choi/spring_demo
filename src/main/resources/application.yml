@@ -1,9 +1,35 @@
-pring:
+server:
+  port: 8080
+
+spring:
   profiles:
     include: API-KEY
 
+  datasource:
+#    mariadb
+#    driverClassName: org.mariadb.jdbc.Driver
+#    url: jdbc:mariadb://localhost:3306/database
+
+#    oracle
+#    driverClassName: oracle.jdbc.OracleDriver
+
+#    mysql
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/test?serverTimezone=Asia/Seoul
+    username: admin
+    password: admin
+
+  jpa:
+#    hibernate:
+#      ddl-auto: update
+#      ddl-auto: create
+    properties:
+      hibernate:
+        format_sql: true
+    show-sql: true
+
 openai:
-  api-key: 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
+  api-key: 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
 
 chatgpt:
-  api-key: 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
+  api-key: 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

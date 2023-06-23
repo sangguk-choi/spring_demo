@@ -1,8 +1,10 @@
 package com.example.demo.controller;
 
+import com.example.demo.data.TestData;
 import com.example.demo.entity.ChatReqEntity;
 import com.example.demo.entity.TestEntity;
 import com.example.demo.service.ChatService;
+import com.example.demo.service.TestService;
 import io.github.flashvayne.chatgpt.dto.ChatRequest;
 import io.github.flashvayne.chatgpt.dto.ChatResponse;
 import io.github.flashvayne.chatgpt.service.ChatgptService;
@@ -16,10 +18,11 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api")
 @RequiredArgsConstructor
-@Slf4j
 public class ApiController {
     private final ChatService chatService;
     private final ChatgptService chatgptService;
+
+    private final TestService testService;
 
     @ResponseBody
     @PostMapping( value = "askChatGPT" )
@@ -34,21 +37,38 @@ public class ApiController {
         return response;
     }
 
-    @GetMapping( value = "test1")
-    @ApiOperation(value = "Test Sample1")
-    public Object test1(@RequestParam("name") String name, @RequestParam("age") String age) {
-        System.out.println("test");
-        TestEntity testEntity = new TestEntity();
+    @GetMapping( value = "read_test")
+    @ApiOperation(value = "Read Test : CRUD")
+    public ResponseEntity<TestEntity> read_test(@RequestParam("name") String name, @RequestParam("age") String age) {
 
-        testEntity.setName(name);
-        testEntity.setAge(age);
+        TestEntity testEntity = testService.read(name, age);
 
         return ResponseEntity.ok(testEntity);
     }
 
-    @GetMapping( value = "test2", produces = MediaType.TEXT_PLAIN_VALUE)
-    @ApiOperation(value = "Test Sample2")
-    public Object test2(@RequestParam String param) {
-        return ResponseEntity.ok(param);
+    @PostMapping( value = "create_test")
+    @ApiOperation(value = "Create Test : CRUD")
+    public ResponseEntity<TestEntity> create_test(@RequestBody TestData testData) {
+
+        TestEntity testEntity = testService.create(testData);
+
+        return ResponseEntity.ok(testEntity);
+    }
+
+    @PutMapping(value = "update_test/{id}")
+    @ApiOperation(value = "Update Test : CRUD")
+    public ResponseEntity<TestEntity> update_test(@PathVariable Integer id, @RequestBody TestData testData) {
+        TestEntity testEntity = testService.update(id, testData);
+
+        return ResponseEntity.ok(testEntity);
+    }
+
+    @DeleteMapping( value = "delete_test")
+    @ApiOperation(value = "Delete Test : CRUD")
+    public ResponseEntity<TestEntity> delete_test(@RequestBody TestData testData) {
+
+        TestEntity testEntity = testService.delete(testData);
+
+        return ResponseEntity.ok(testEntity);
     }
 }

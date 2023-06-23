@@ -32,7 +32,7 @@
 <!--                  maxTokens: 500,-->
 <!--                  temperature: 1.0,-->
                 };
-                const url = "http://localhost:8080/api/askChatGPT";
+                const url = "http://localhost:80/api/askChatGPT";
                 const response = await fetch(url, {
                   method: "POST",
                      headers: {
@@ -59,8 +59,8 @@
               try {
                 const name = "sangguk"; // 전달할 데이터
                 const age = "31";
-<!--                const url = "http://localhost:8080/api/test1?name=${name}";-->
-                const url = `http://localhost:8080/api/test1?name=${encodeURIComponent(name)}&age=${encodeURIComponent(age)}`;
+<!--                const url = "http://localhost:80/api/test1?name=${name}";-->
+                const url = `http://localhost:80/api/test1?name=${encodeURIComponent(name)}&age=${encodeURIComponent(age)}`;
                 const response = await fetch(url, {
                   method: "GET",
 <!--                     headers: {-->
