@@ -1,7 +1,9 @@
 package com.example.demo.service;
 
-import com.example.demo.data.TestData;
+import com.example.demo.dto.TestData;
 import com.example.demo.entity.TestEntity;
+import com.example.demo.exception.ApiException;
+import com.example.demo.exception.ApiExceptionEnum;
 import com.example.demo.repository.TestRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -15,6 +17,10 @@ public class TestService {
     public TestEntity read(String name, String age)
     {
         TestEntity testEntity = testRepository.findAllByNameAndAge(name, age);
+
+        if (testEntity == null) {
+            throw new ApiException(ApiExceptionEnum.TEST_EXCEPTION);
+        }
 
         return testEntity;
     }

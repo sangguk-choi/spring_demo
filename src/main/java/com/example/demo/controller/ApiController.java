@@ -1,17 +1,17 @@
 package com.example.demo.controller;
 
-import com.example.demo.data.TestData;
-import com.example.demo.entity.ChatReqEntity;
+import com.example.demo.dto.TestData;
 import com.example.demo.entity.TestEntity;
+import com.example.demo.exception.ApiException;
+import com.example.demo.exception.ApiExceptionEnum;
 import com.example.demo.service.ChatService;
 import com.example.demo.service.TestService;
 import io.github.flashvayne.chatgpt.dto.ChatRequest;
-import io.github.flashvayne.chatgpt.dto.ChatResponse;
 import io.github.flashvayne.chatgpt.service.ChatgptService;
 import io.swagger.annotations.ApiOperation;
+
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.MediaType;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
