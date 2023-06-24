@@ -8,8 +8,11 @@ import org.springframework.http.HttpStatus;
 @ToString
 public class ApiExceptionEnum {
 
-    public static final ApiExceptionEnum TEST_EXCEPTION =
-            new ApiExceptionEnum(HttpStatus.BAD_REQUEST, "E001", "테스트 Exception");
+    public static final ApiExceptionEnum INVALID_INPUT_DATA_EXCEPTION =
+            new ApiExceptionEnum(HttpStatus.BAD_REQUEST, "E001", "해당 데이터가 데이터베이스에 없습니다.");
+
+    public static final ApiExceptionEnum NULL_INPUT_DATA_EXCEPTION =
+            new ApiExceptionEnum(HttpStatus.BAD_REQUEST, "E002", "입력 데이터가 없습니다.");
 
     public static final ApiExceptionEnum SECURITY_EXCEPTION =
             new ApiExceptionEnum(HttpStatus.UNAUTHORIZED, "S001", "로그인이 필요합니다.");

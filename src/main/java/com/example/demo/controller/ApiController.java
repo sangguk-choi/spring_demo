@@ -32,11 +32,10 @@ public class ApiController {
     @ApiOperation(value = "Chat GPT api Connection")
 //    public ChatResponse test0(@RequestBody ChatRequest chatRequest) {
     public String test0(@RequestBody ChatRequest chatRequest) {
-        System.out.println("test0 start");
         String request = chatRequest.getPrompt();
         String response = chatService.getChatResponse(request);
 //        ChatResponse response = chatService.getChatResponse2(chatRequest);
-        System.out.println("test0 end");
+
         return response;
     }
 

@@ -29,7 +29,7 @@ public class TestService {
         TestEntity testEntity = testRepository.findAllByNameAndAge(name, age);
 
         if (testEntity == null) {
-            throw new ApiException(ApiExceptionEnum.TEST_EXCEPTION);
+            throw new ApiException(ApiExceptionEnum.INVALID_INPUT_DATA_EXCEPTION);
         }
 
         return testEntity;
@@ -39,9 +39,18 @@ public class TestService {
     {
         TestEntity testEntity = new TestEntity();
 
-        testEntity.setAge(testData.getAge());
-        testEntity.setName(testData.getName());
-        testEntity.setHometown(testData.getHometown());
+        String age = testData.getAge();
+        String name = testData.getName();
+        String hometown = testData.getHometown();
+
+        if(isStringEmpty(age)||isStringEmpty(name)||isStringEmpty(hometown))
+        {
+            throw new ApiException(ApiExceptionEnum.NULL_INPUT_DATA_EXCEPTION);
+        }
+
+        testEntity.setAge(age);
+        testEntity.setName(name);
+        testEntity.setHometown(hometown);
 
         testEntity = testRepository.save(testEntity);
 
@@ -52,10 +61,23 @@ public class TestService {
 
         TestEntity testEntity = new TestEntity();
 
+        String age = testData.getAge();
+        String name = testData.getName();
+        String hometown = testData.getHometown();
+
+        System.out.println(age + "age");
+        System.out.println(name);
+        System.out.println(hometown);
+
+        if(isStringEmpty(age)||isStringEmpty(name)||isStringEmpty(hometown))
+        {
+            throw new ApiException(ApiExceptionEnum.NULL_INPUT_DATA_EXCEPTION);
+        }
+
         testEntity.setId(id);
-        testEntity.setAge(testData.getAge());
-        testEntity.setName(testData.getName());
-        testEntity.setHometown(testData.getHometown());
+        testEntity.setAge(age);
+        testEntity.setName(name);
+        testEntity.setHometown(hometown);
 
         testEntity = testRepository.save(testEntity);
 
@@ -68,5 +90,9 @@ public class TestService {
         testRepository.deleteById(id);
 
         return testEntity;
+    }
+
+    static boolean isStringEmpty(String str) {
+        return str == null || str.isEmpty();
     }
 }
