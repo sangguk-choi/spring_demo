@@ -15,6 +15,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.Optional;
+
 @RestController
 @RequestMapping("/api")
 @RequiredArgsConstructor
@@ -35,6 +38,15 @@ public class ApiController {
 //        ChatResponse response = chatService.getChatResponse2(chatRequest);
         System.out.println("test0 end");
         return response;
+    }
+
+    @GetMapping( value = "read_all_test")
+    @ApiOperation(value = "Read All Test : CRUD")
+    public ResponseEntity<List<TestEntity>> read_all_test() {
+
+        List<TestEntity> testEnties = testService.read_all();
+
+        return ResponseEntity.ok(testEnties);
     }
 
     @GetMapping( value = "read_test")
@@ -58,16 +70,17 @@ public class ApiController {
     @PutMapping(value = "update_test/{id}")
     @ApiOperation(value = "Update Test : CRUD")
     public ResponseEntity<TestEntity> update_test(@PathVariable Integer id, @RequestBody TestData testData) {
+        System.out.println("test0 start");
         TestEntity testEntity = testService.update(id, testData);
 
         return ResponseEntity.ok(testEntity);
     }
 
-    @DeleteMapping( value = "delete_test")
+    @DeleteMapping( value = "delete_test/{id}")
     @ApiOperation(value = "Delete Test : CRUD")
-    public ResponseEntity<TestEntity> delete_test(@RequestBody TestData testData) {
+    public ResponseEntity<Optional<TestEntity>> delete_test(@PathVariable Integer id) {
 
-        TestEntity testEntity = testService.delete(testData);
+        Optional<TestEntity> testEntity = testService.delete(id);
 
         return ResponseEntity.ok(testEntity);
     }

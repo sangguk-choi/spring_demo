@@ -8,11 +8,21 @@ import com.example.demo.repository.TestRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Optional;
+
 @Service
 @RequiredArgsConstructor
 public class TestService {
 
     private final TestRepository testRepository;
+
+    public List<TestEntity> read_all()
+    {
+        List<TestEntity> testEntities = testRepository.findAll();
+
+        return testEntities;
+    }
 
     public TestEntity read(String name, String age)
     {
@@ -52,11 +62,10 @@ public class TestService {
         return testEntity;
     }
 
-    public TestEntity delete(TestData testData)
+    public Optional<TestEntity> delete(Integer id)
     {
-        TestEntity testEntity = testRepository.findAllByNameAndAgeAndHometown(testData.getName(), testData.getAge(), testData.getHometown());
-
-        testRepository.deleteById(testEntity.getId());
+        Optional<TestEntity> testEntity = testRepository.findById(id);
+        testRepository.deleteById(id);
 
         return testEntity;
     }
