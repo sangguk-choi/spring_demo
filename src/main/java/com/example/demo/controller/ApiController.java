@@ -27,6 +27,15 @@ public class ApiController {
 
     private final TestService testService;
 
+    @GetMapping( value = "test")
+    @ApiOperation(value = "Test")
+    public ResponseEntity<String> test() {
+
+        String test = "test";
+
+        return ResponseEntity.ok(test);
+    }
+
     @ResponseBody
     @PostMapping( value = "askChatGPT" )
     @ApiOperation(value = "Chat GPT api Connection")
