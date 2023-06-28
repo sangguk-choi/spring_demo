@@ -43,7 +43,7 @@ public class UserController {
         return ResponseEntity.ok(userResp);
     }
 
-    @GetMapping( value = "register/update")
+    @PutMapping( value = "register/update")
     @ApiOperation(value = "Update User Infomation : CRUD")
     public ResponseEntity<UserEntity> update_user(@RequestBody UserDto userReq) {
         UserEntity userResponses = userService.update_user(userReq);
@@ -51,7 +51,7 @@ public class UserController {
         return ResponseEntity.ok(userResponses);
     }
 
-    @PostMapping( value = "register/delete")
+    @DeleteMapping( value = "register/delete")
     @ApiOperation(value = "Delete User Infomation : CRUD")
     public ResponseEntity<UserEntity> delete_user(@RequestBody UserDto userReq) {
         UserEntity userResp = userService.delete_user(userReq);
