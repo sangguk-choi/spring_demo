@@ -11,7 +11,7 @@ import javax.persistence.*;
 @Table(name= "user")
 public class UserEntity {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 //    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_sequence")
 //    @SequenceGenerator(name = "user_sequence", sequenceName = "user_seq")
 //    @GeneratedValue(strategy = GenerationType.IDENTITY)

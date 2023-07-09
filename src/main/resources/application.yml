@@ -1,6 +1,6 @@
 server:
-  port: ${TODO_PORT_NUM}
-#  port: 8080
+#  port: ${TODO_PORT_NUM}
+  port: 8080
 
 spring:
   profiles:
@@ -8,11 +8,11 @@ spring:
 
   datasource:
 #    mariadb
-    driverClassName: org.mariadb.jdbc.Driver
-
-    url: jdbc:mysql://${TODO_MYSQL_HOST}:${TODO_MYSQL_PORT}/${TODO_DATA_BASE_NAME}?serverTimezone=Asia/Seoul
-    username: ${TODO_MYSQL_USER_NAME}
-    password: ${TODO_MYSQL_PASSWORD}
+#    driverClassName: org.mariadb.jdbc.Driver
+#
+#    url: jdbc:mysql://${TODO_MYSQL_HOST}:${TODO_MYSQL_PORT}/${TODO_DATA_BASE_NAME}?serverTimezone=Asia/Seoul
+#    username: ${TODO_MYSQL_USER_NAME}
+#    password: ${TODO_MYSQL_PASSWORD}
 #    url: jdbc:mariadb://localhost:3306/database
 #    url: jdbc:mariadb://svc.sel4.cloudtype.app:30014/test?serverTimezone=Asia/Seoul
 #    username: root
@@ -22,10 +22,14 @@ spring:
 #    driverClassName: oracle.jdbc.OracleDriver
 
 #    mysql
-#    driverClassName: com.mysql.cj.jdbc.Driver
+    driverClassName: com.mysql.cj.jdbc.Driver
 #    url: jdbc:mysql://127.0.0.1:3306/test?serverTimezone=Asia/Seoul
 #    username: admin
 #    password: admin
+    url: jdbc:mysql://34.64.45.3:3306/test?serverTimezone=Asia/Seoul
+    username: root
+    password: tkdrnr13@
+
 
 #    url: jdbc:mysql://${TODO_MYSQL_HOST}:${TODO_MYSQL_PORT}/${TODO_DATA_BASE_NAME}?serverTimezone=Asia/Seoul
 #    username: ${TODO_MYSQL_USER_NAME}
@@ -39,9 +43,9 @@ spring:
     properties:
       hibernate:
         format_sql: true
-    #    hibernate:
+        hibernate:
     #      ddl-auto: update
-    #      ddl-auto: create
+          ddl-auto: create
 
 # jwt.secret.key의 값은 256bit 이상이어야 합니다.
 #jwt:
