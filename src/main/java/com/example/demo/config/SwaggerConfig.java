@@ -14,9 +14,9 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @Configuration
 @EnableSwagger2
 public class SwaggerConfig implements WebMvcConfigurer {
-    private static final String API_NAME = "TestProject API";
-    private static final String API_VERSION = "0.0.1";
-    private static final String API_DESCRIPTION = "TestProject API 명세서";
+//    private static final String API_NAME = "TestProject API";
+//    private static final String API_VERSION = "0.0.1";
+//    private static final String API_DESCRIPTION = "TestProject API 명세서";
 
     @Bean
     public Docket api() {
@@ -24,16 +24,16 @@ public class SwaggerConfig implements WebMvcConfigurer {
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("com.example.demo"))
                 .paths(PathSelectors.any())
-                .build()
-                .apiInfo(apiInfo());
+                .build();
+//                .apiInfo(apiInfo());
     }
 
-    public ApiInfo apiInfo() {  //ApiInfo 설정
-        return new ApiInfoBuilder()
-                .title(API_NAME)
-                .version(API_VERSION)
-                .description(API_DESCRIPTION)
-                .build();
-    }
+//    public ApiInfo apiInfo() {  //ApiInfo 설정
+//        return new ApiInfoBuilder()
+//                .title(API_NAME)
+//                .version(API_VERSION)
+//                .description(API_DESCRIPTION)
+//                .build();
+//    }
 
 }

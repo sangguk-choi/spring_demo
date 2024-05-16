@@ -22,13 +22,13 @@ spring:
 #    driverClassName: oracle.jdbc.OracleDriver
 
 #    mysql
-    driverClassName: com.mysql.cj.jdbc.Driver
+#    driverClassName: com.mysql.cj.jdbc.Driver
 #    url: jdbc:mysql://127.0.0.1:3306/test?serverTimezone=Asia/Seoul
 #    username: admin
 #    password: admin
-    url: jdbc:mysql://34.64.45.3:3306/test?serverTimezone=Asia/Seoul
-    username: root
-    password: tkdrnr13@
+#    url: jdbc:mysql://34.64.45.3:3306/test?serverTimezone=Asia/Seoul
+#    username: root
+#    password: tkdrnr13@
 
 
 #    url: jdbc:mysql://${TODO_MYSQL_HOST}:${TODO_MYSQL_PORT}/${TODO_DATA_BASE_NAME}?serverTimezone=Asia/Seoul
