@@ -1,12 +1,12 @@
-server:
+#server:
 #  port: ${TODO_PORT_NUM}
-  port: 8080
+#  port: 8080
 
-spring:
-  profiles:
-    include: API-KEY
-
-  datasource:
+#spring:
+#  profiles:
+#    include: API-KEY
+#
+#  datasource:
 #    mariadb
 #    driverClassName: org.mariadb.jdbc.Driver
 #
@@ -38,22 +38,22 @@ spring:
 
 
 
-  jpa:
-    show-sql: true
-    properties:
-      hibernate:
-        format_sql: true
-        hibernate:
-    #      ddl-auto: update
-          ddl-auto: create
+#  jpa:
+#    show-sql: true
+#    properties:
+#      hibernate:
+#        format_sql: true
+#        hibernate:
+#    #      ddl-auto: update
+#          ddl-auto: create
 
 # jwt.secret.key의 값은 256bit 이상이어야 합니다.
 #jwt:
 #  secret:
 #    key: x!A%D*G-KaPdSgVkYp3s5v8y/B?E(H+M
 
-openai:
-  api-key: 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
-
-chatgpt:
-  api-key: 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
+#openai:
+#  api-key: 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
+#
+#chatgpt:
+#  api-key: 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
