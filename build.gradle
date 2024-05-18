@@ -7,7 +7,7 @@ plugins {
 
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '11'
+sourceCompatibility = '1.8'
 
 repositories {
 	mavenCentral()
@@ -36,38 +36,38 @@ dependencies {
 
 	// JPA & DB
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	implementation 'mysql:mysql-connector-java' // mysql
 	implementation group: 'org.mariadb.jdbc', name: 'mariadb-java-client' // mariadb
+//	implementation 'mysql:mysql-connector-java' // mysql
 
 	// Swagger 2
 	implementation group: 'io.springfox', name: 'springfox-swagger2', version: '2.9.2'
 	implementation group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.9.2'
 
 	// ASW Cloud
-	implementation 'org.springframework.cloud:spring-cloud-function-adapter-aws'
-	implementation group: 'com.amazonaws', name: 'aws-lambda-java-core', version: '1.2.1'
-	implementation group: 'com.amazonaws', name: 'aws-lambda-java-events', version: '3.9.0'
+//	implementation 'org.springframework.cloud:spring-cloud-function-adapter-aws'
+//	implementation group: 'com.amazonaws', name: 'aws-lambda-java-core', version: '1.2.1'
+//	implementation group: 'com.amazonaws', name: 'aws-lambda-java-events', version: '3.9.0'
 
-//	// Security
+	// Security
 //	implementation 'org.springframework.boot:spring-boot-starter-security:2.6.6'
 
 	// Chat GPT
-	implementation 'io.github.flashvayne:chatgpt-spring-boot-starter:1.0.4'
+//	implementation 'io.github.flashvayne:chatgpt-spring-boot-starter:1.0.4'
 //	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
 }
 
-tasks.named('test') {
-	useJUnitPlatform()
-}
+//tasks.named('test') {
+//	useJUnitPlatform()
+//}
 
 // Cloud Setting : For zip file
-task buildZip(type: Zip) {
-	from compileJava
-	from processResources
-	into('lib') {
-		from configurations.runtimeClasspath
-	}
-}
+//task buildZip(type: Zip) {
+//	from compileJava
+//	from processResources
+//	into('lib') {
+//		from configurations.runtimeClasspath
+//	}
+//}
 
 //configurations {
 //	compileOnly {

@@ -18,7 +18,7 @@ public class TestEntity {
     private String name;
 
     @Column(name = "age")
-    private String age;
+    private Integer age;
 
     @Column(name = "hometown")
     private String hometown;
