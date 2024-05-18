@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
-import com.example.demo.dto.TestDto;
+import com.example.demo.dto.TestRequest;
+import com.example.demo.dto.TestResponse;
 import com.example.demo.entity.TestEntity;
 import com.example.demo.repository.TestRepository;
 import lombok.RequiredArgsConstructor;
@@ -12,44 +13,74 @@ public class TestService {
 
     private final TestRepository testRepository;
 
-    public TestDto findAllByNameAndAge(String name, Integer age) {
+    public TestResponse readService(String name, Integer age) {
 
-        TestDto testDto = new TestDto();
+        TestResponse testResponse = new TestResponse();
         TestEntity testEntity = new TestEntity();
 
         testEntity = testRepository.findAllByNameAndAge(name, age);
 
-        testDto.setId(testEntity.getId());
-        testDto.setName(testEntity.getName());
-        testDto.setAge(testEntity.getAge());
-        testDto.setHometown(testEntity.getHometown());
+        testResponse.setId(testEntity.getId());
+        testResponse.setName(testEntity.getName());
+        testResponse.setAge(testEntity.getAge());
+        testResponse.setHometown(testEntity.getHometown());
 
-        return testDto;
+        return testResponse;
     }
     
-    public TestDto save(TestDto testDto) {
+    public TestResponse createService(TestRequest testRequest) {
 
         TestEntity testEntity_in = new TestEntity();
         TestEntity testEntity_out = new TestEntity();
 
-        TestDto testDto_out = new TestDto();
+        TestResponse testResponse = new TestResponse();
 
-        testEntity_in.setId(testDto.getId());
-        testEntity_in.setName(testDto.getName());
-        testEntity_in.setAge(testDto.getAge());
-        testEntity_in.setHometown(testDto.getHometown());
+//        testEntity_in.setId(testRequest.getId());
+        testEntity_in.setName(testRequest.getName());
+        testEntity_in.setAge(testRequest.getAge());
+        testEntity_in.setHometown(testRequest.getHometown());
 
         testEntity_out = testRepository.save(testEntity_in);
 
-        testDto_out.setId(testEntity_out.getId());
-        testDto_out.setName(testEntity_out.getName());
-        testDto_out.setAge(testEntity_out.getAge());
-        testDto_out.setHometown(testEntity_out.getHometown());
+        testResponse.setId(testEntity_out.getId());
+        testResponse.setName(testEntity_out.getName());
+        testResponse.setAge(testEntity_out.getAge());
+        testResponse.setHometown(testEntity_out.getHometown());
 
-        return testDto_out;
+        return testResponse;
     }
 
-    public String deleteById(Integer id) {
+    public TestResponse updateService(Integer id, TestRequest testRequest) {
+
+        boolean isEntity = testRepository.existsById(id);
+
+        TestEntity testEntity_in = new TestEntity();
+        TestEntity testEntity_out = new TestEntity();
+
+        TestResponse testResponse = new TestResponse();
+
+        if(isEntity) {
+            testEntity_in.setId(id);
+            testEntity_in.setName(testRequest.getName());
+            testEntity_in.setAge(testRequest.getAge());
+            testEntity_in.setHometown(testRequest.getHometown());
+
+            testEntity_out = testRepository.save(testEntity_in);
+
+            testResponse.setId(testEntity_out.getId());
+            testResponse.setName(testEntity_out.getName());
+            testResponse.setAge(testEntity_out.getAge());
+            testResponse.setHometown(testEntity_out.getHometown());
+        }
+        else {
+            testResponse = null;
+        }
+
+        return testResponse;
+    }
+    
+
+    public String deleteService(Integer id) {
 
         boolean isEntity = testRepository.existsById(id);
         String retValue;

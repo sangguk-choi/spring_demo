@@ -1,10 +1,9 @@
 package com.example.demo.controller;
 
-import com.example.demo.dto.TestDto;
-import com.example.demo.entity.TestEntity;
+import com.example.demo.dto.TestRequest;
+import com.example.demo.dto.TestResponse;
 import com.example.demo.repository.TestRepository;
 import com.example.demo.service.TestService;
-import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.http.ResponseEntity;
@@ -19,34 +18,33 @@ public class TestController {
     private final TestRepository testRepository;
 
     @GetMapping( value = "read")
-    public ResponseEntity<TestDto> read_test(@RequestParam(value="name") String name, @RequestParam(value="age") String age) {
+    public ResponseEntity<TestResponse> read_test(@RequestParam(value="name") String name, @RequestParam(value="age") String age) {
 
-        TestDto testDto = new TestDto();
+        TestResponse testResponse = new TestResponse();
 
-        testDto = testService.findAllByNameAndAge(name, Integer.valueOf(age));
+        testResponse = testService.readService(name, Integer.valueOf(age));
 
-        return ResponseEntity.ok(testDto);
+        return ResponseEntity.ok(testResponse);
     }
 
     @PostMapping( value = "create")
-//    public ResponseEntity<TestDto> create_test(@RequestParam(value="name") String name, @RequestParam(value="age") String age, @RequestParam(value="hometown") String hometown) {
-    public ResponseEntity<TestDto> create_test(@RequestBody TestDto testDto) {
+    public ResponseEntity<TestResponse> create_test(@RequestBody TestRequest testRequest) {
 
-       TestDto testDto_out = new TestDto();
+        TestResponse testResponse = new TestResponse();
 
-        testDto_out = testService.save(testDto);
+        testResponse = testService.createService(testRequest);
 
-       return ResponseEntity.ok(testDto_out);
+       return ResponseEntity.ok(testResponse);
     }
 
-    @PutMapping( value = "update")
-    public ResponseEntity<TestDto> update_test(@RequestParam(value="name") String name, @RequestParam(value="age") String age) {
+    @PutMapping( value = "update/{id}")
+    public ResponseEntity<TestResponse> update_test(@PathVariable Integer id, @RequestBody TestRequest testRequest) {
 
-        TestDto testDto = new TestDto();
+        TestResponse testResponse = new TestResponse();
 
-        testDto = testService.findAllByNameAndAge(name, Integer.valueOf(age));
+        testResponse = testService.updateService(Integer.valueOf(id), testRequest);
 
-        return ResponseEntity.ok(testDto);
+        return ResponseEntity.ok(testResponse);
     }
 
     @DeleteMapping( value = "delete")
@@ -54,7 +52,7 @@ public class TestController {
 
         String retValue;
 
-        retValue = testService.deleteById(Integer.valueOf(id));
+        retValue = testService.deleteService(Integer.valueOf(id));
 
         return ResponseEntity.ok(retValue);
     }
